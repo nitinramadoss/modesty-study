@@ -1,14 +1,24 @@
 const http = require('http');
+const util = require("util");
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const port = 1234;
 
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
+ 
+  let path = url.parse(req.url, true);
+
+  res.setHeader("Content-type", "application/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.writeHead(200, "OK");
+
+  res.write("The response\n\n");
+  res.write(util.inspect(path.query) + "\n\n");
+ 
+  res.end("End of message.");  
+  
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+server.listen(port, () => {
+  console.log(`Listening on ${port}`);
 });
+
