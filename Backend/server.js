@@ -9,12 +9,19 @@ const port = 8080;
 const server = http.createServer((req, res) => {
  
   //let path = url.parse(req.url, true);
+  if(req.url ==='/passdata') {
+    const projectID = "vinay-ovis";
+    const sessionID = "1234";
+    const queries = ["What is your name?"];
+    const languageCode = "en";
+
+    executeQueries(projectID, sessionID, queries, languageCode);
+  }
+
 
   res.setHeader("Content-type", "application/json");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.writeHead(200, "OK");
-
-  executeQueries("vinay-ovis", "1234", ["What's your name?"], "en");
 
   res.write("The response\n\n");
   //res.write(util.inspect(path.query) + "\n\n");
