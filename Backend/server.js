@@ -1,8 +1,14 @@
 const http = require('http');
 const util = require("util");
+require('dotenv').config();
 
 const dialogflow = require('@google-cloud/dialogflow');
-const sessionClient = new dialogflow.SessionsClient();
+
+const config = {
+  keyFilename: process.env.KEY_FILE_PATH
+};
+
+const sessionClient = new dialogflow.SessionsClient(config);
 
 const port = 8080;
 
